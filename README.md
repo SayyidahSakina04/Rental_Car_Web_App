@@ -31,7 +31,7 @@ The system allows administrators to manage cars, customers, and rentals, while a
 
 - **Backend:** C# ASP.NET MVC  
 - **Frontend:** Razor Views, Bootstrap  
-- **Database:** Microsoft SQL Server  
+- **Database:** Retool PostgreSQL
 - **ORM:** Entity Framework (Code-First)  
 
 ---
