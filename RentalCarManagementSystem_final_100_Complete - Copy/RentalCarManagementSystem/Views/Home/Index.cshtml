@@ -1,0 +1,76 @@
+﻿@{
+    ViewData["Title"] = "Welcome to PUCIT CAR RENTALS";
+}
+
+<style>
+    .welcome-section {
+        height: 85vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .content {
+        text-align: center;
+        background: #CCD0CF;
+        padding: 40px;
+        border-radius: 10px;
+        width: 100%;
+        max-width: 600px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    }
+
+        .content h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .content p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            color: rgba(1, 1, 1, 1);
+        }
+
+    .btn-custom {
+        font-size: 1.1rem;
+        padding: 12px 20px;
+        border-radius: 30px;
+        width: 100%;
+    }
+
+    .btn-login {
+        background-color: #06141B;
+        border: none;
+        color: white;
+    }
+
+    .btn-register {
+        background-color: #06141B;
+        border: none;
+        color: white;
+    }
+
+        .btn-login:hover,
+        .btn-signup:hover {
+            opacity: 0.9;
+        }
+</style>
+
+<div class="welcome-section">
+    <div class="content">
+        <h1 class="display-4">Welcome to PUCIT CAR RENTALS</h1>
+        <p class="lead">Your trusted car rental service at your fingertips. Sign up or login to begin your journey!</p>
+
+        <div class="row justify-content-center">
+            <div class="col-md-5 mb-3 pr-md-2">
+                <a asp-area="Identity" asp-page="/Account/Login" class="btn btn-custom btn-login">Login</a>
+            </div>
+            <div class="col-md-5 mb-3 pl-md-2">
+                <a asp-area="Identity" asp-page="/Account/Register" class="btn btn-custom btn-register">Register</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

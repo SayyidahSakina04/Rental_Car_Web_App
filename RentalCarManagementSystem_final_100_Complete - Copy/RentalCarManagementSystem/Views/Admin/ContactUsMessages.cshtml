@@ -1,0 +1,44 @@
+﻿@model List<RentalCarManagementSystem.Models.ContactUs>
+
+@{
+    ViewData["Title"] = "Contact Messages";
+}
+
+<div class="container mt-4">
+    <h1>Customer Messages</h1>
+
+    @if (!Model.Any())
+    {
+            <p>No messages received yet.</p>
+    }
+    else
+    {
+            <table class="table table-striped table-bordered" style="background-color: #9BABAB">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Message</th>
+                        <th>Submitted At</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach (var msg in Model)
+                {
+                            <tr>
+                                <td>@msg.Id</td>
+                                <td>@msg.Name</td>
+                                <td>@msg.Email</td>
+                                <td>@msg.Phone</td>
+                                <td>@msg.Message</td>
+                                <td>@msg.SubmittedAt.ToString("g")</td>
+                            </tr>
+                }
+                </tbody>
+            </table>
+    }
+
+    <a href="@Url.Action("Dashboard", "Admin")" class="btn btn-dark mt-3 mb-4">Back to Dashboard</a>
+</div>

@@ -1,0 +1,66 @@
+﻿@model List<RentalCarManagementSystem.Models.Car>
+@{
+    ViewData["Title"] = "Products";
+}
+
+<style>
+    .btn{
+        background-color: #06141B;
+        border: none;
+        color: white;
+    }
+    .card{
+        background-color: #9BA8AB;
+        border: 2px solid #06141B;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    }
+</style>
+@if (TempData["Success"] != null)
+{
+    <script>
+        alert('@TempData["Success"]');
+    </script>
+}
+@if (Model.Count == 0)
+{
+    <p>No cars available.</p>
+}
+
+<div class="container mt-4">
+    <h1>Manage Cars for Rent</h1>
+
+    <!-- add new car btn -->
+    <div class="text-right mb-2">
+        <a href="@Url.Action("AddProduct", "Admin")" class="btn btn-primary mt-2">Add New Car</a>
+    </div>
+
+    <div class="row mt-4">
+        @foreach (var car in Model)
+        {
+            // admin should see all cars
+            <div class="col-md-4 mb-4 d-flex">
+                <div class="card w-100 d-flex flex-column h-100">
+                    <img src="@car.ImageURL" class="card-img-top" alt="Car Image" style="height: 200px; object-fit: cover;">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">@car.Model</h5>
+                        <p class="card-text flex-grow-1">@car.Description</p>
+                        <p><strong>Price: Rs.@car.PricePerDay/day</strong></p>
+                        <p><strong>Status:</strong> 
+                            <span style="color:@(car.IsAvailable ? "green" : "red")">
+                            @(car.IsAvailable ? "Available" : "Not Available")
+                        </span></p>
+                        <div>
+                            <a href="@Url.Action("EditProduct", "Admin", new { id = car.Id })" class="btn btn-warning">Edit</a>
+                            <a href="@Url.Action("DeleteProduct", "Admin", new { id = car.Id })" class="btn btn-danger ml-2">Delete</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        }
+    </div>
+
+
+    <a href="@Url.Action("Dashboard", "Admin")" class="btn btn-primary mt-4 mb-4">Back to Dashboard</a>
+</div>

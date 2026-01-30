@@ -1,0 +1,55 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model RentalCarManagementSystem.Models.Car
+
+@{
+    ViewData["Title"] = "Book Car";
+}
+
+<style>
+    body {
+        color: white
+    }
+
+    .btn {
+        background-color: #11212D
+    }
+</style>
+<div class="container mt-4">
+    <h2>Book: @Model.Model</h2>
+    <form method="post" asp-action="BookCar" asp-controller="Customer">
+        <input type="hidden" name="carId" value="@Model.Id" />
+
+        <div class="form-group">
+            <label>Car Model</label>
+            <input class="form-control" value="@Model.Model" readonly />
+        </div>
+
+        <div class="form-group">
+            <label>Description</label>
+            <textarea class="form-control" readonly>@Model.Description</textarea>
+        </div>
+
+        <div class="form-group">
+            <label>Price Per Day</label>
+            <input class="form-control" value="@Model.PricePerDay" readonly />
+        </div>
+
+        <div class="form-group">
+            <label for="startDate">Start Date</label>
+            <input class="form-control" type="date" name="startDate" required />
+        </div>
+
+        <div class="form-group">
+            <label for="endDate">End Date</label>
+            <input class="form-control" type="date" name="endDate" required />
+        </div>
+
+        <button type="submit" class="btn btn-success mt-3">Confirm Booking</button>
+        <a href="@Url.Action("Products", "Customer")" class="btn btn-secondary mt-3 ml-2">Cancel</a>
+        <div class="mb-5"></div>
+    </form>
+</div>

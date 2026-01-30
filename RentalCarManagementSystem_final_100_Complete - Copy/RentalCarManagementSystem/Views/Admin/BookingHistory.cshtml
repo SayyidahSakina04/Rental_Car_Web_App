@@ -1,0 +1,44 @@
+﻿@model List<RentalCarManagementSystem.Models.ViewModels.BookingHistoryViewModel>
+
+@{
+    ViewData["Title"] = "Booking History";
+}
+
+<div class="container mt-4">
+    <h1>Complete Booking History</h1>
+
+    @if (!Model.Any())
+    {
+            <p>No booking records available.</p>
+    }
+    else
+    {
+            <table class="table table-bordered table-striped" style="background-color: #9BABAB;">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Booking ID</th>
+                        <th>Customer Email</th>
+                        <th>Car Model</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach (var booking in Model)
+                {
+                            <tr>
+                                <td>@booking.BookingId</td>
+                                <td>@booking.CustomerEmail</td>
+                                <td>@booking.CarModel</td>
+                                <td>@booking.StartDate.ToShortDateString()</td>
+                                <td>@booking.EndDate.ToShortDateString()</td>
+                                <td>@booking.Status</td>
+                            </tr>
+                }
+                </tbody>
+            </table>
+    }
+
+    <a href="@Url.Action("Dashboard", "Admin")" class="btn btn-dark mt-4 mb-4">Back to Dashboard</a>
+</div>

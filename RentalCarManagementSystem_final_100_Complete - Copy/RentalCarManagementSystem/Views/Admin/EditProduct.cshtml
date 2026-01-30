@@ -1,0 +1,52 @@
+﻿@model RentalCarManagementSystem.Models.Car
+
+@{
+    ViewData["Title"] = "Edit Car";
+}
+
+<div class="container mt-4">
+    <h2>Edit Car Details</h2>
+
+    <form asp-action="EditProduct" method="post" asp-controller="Admin">
+        <input type="hidden" asp-for="Id" />
+
+        <div class="form-group">
+            <label asp-for="Model"></label>
+            <input asp-for="Model" class="form-control" />
+            <span asp-validation-for="Model" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Description"></label>
+            <textarea asp-for="Description" class="form-control"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="PricePerDay"></label>
+            <input asp-for="PricePerDay" class="form-control" />
+            <span asp-validation-for="PricePerDay" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="ImageURL"></label>
+            <input asp-for="ImageURL" class="form-control" />
+            <span asp-validation-for="ImageURL" class="text-danger"></span>
+        </div>
+
+        @* <div class="form-group form-check"> *@
+        @*     <input asp-for="IsAvailable" class="form-check-input" /> *@
+        @*     <label asp-for="IsAvailable" class="form-check-label"></label> *@
+        @* </div> *@
+
+        <button type="submit" class="btn btn-dark mb-3">Update</button>
+        <a asp-action="Products" class="btn btn-secondary mb-3">Cancel</a>
+    </form>
+</div>
+<a href="@Url.Action("Dashboard", "Admin")" class="btn btn-dark mt-4 mb-4">
+    Back to Dashboard
+</a>
+
+@section Scripts {
+        <partial name="_ValidationScriptsPartial" />
+}

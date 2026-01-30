@@ -1,0 +1,65 @@
+﻿@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<style>
+    .card {
+        background-color: #11212D
+    }
+</style>
+
+<div class="content-wrapper">
+    <div class="container mt-4">
+        <h1>Admin Dashboard</h1>
+
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <div class="card text-white mb-3">
+                    <div class="card-header">Total Cars</div>
+                    <div class="card-body">
+                        <h5 class="card-title">Your Cars</h5>
+                        <p class="card-text">Manage all the cars available for rent.</p>
+                        <a href="@Url.Action("Products", "Admin")" class="btn btn-light">View Cars</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card text-white mb-3">
+                    <div class="card-header">Active Rentals</div>
+                    <div class="card-body">
+                        <h5 class="card-title">Your Active Rentals</h5>
+                        <p class="card-text">Track ongoing rentals for customers.</p>
+                        <a href="@Url.Action("ActiveRentals", "Admin")" class="btn btn-light">View Rentals</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card text-white mb-3">
+                    <div class="card-header">Pending Approvals</div>
+                    <div class="card-body">
+                        <h5 class="card-title">Your Pending Approvals</h5>
+                        <p class="card-text">Approve or reject rental requests.</p>
+                        <a href="@Url.Action("PendingApprovals", "Admin")" class="btn btn-light">Manage Approvals</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card text-white mb-3">
+                    <div class="card-header">Booking History</div>
+                    <div class="card-body">
+                        <h5 class="card-title">Complete Booking History</h5>
+                        <p class="card-text">View all rental records including approved or rejected bookings.</p>
+                        <a href="@Url.Action("BookingHistory", "Admin")" class="btn btn-light">View History</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@* <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script> *@

@@ -1,0 +1,60 @@
+﻿@model List<RentalCarManagementSystem.Models.ViewModels.PendingApprovalViewModel>
+
+@{
+    ViewData["Title"] = "Pending Approvals";
+}
+
+<div class="container mt-4">
+    <h1>Pending Rental Approvals</h1>
+
+    @if (TempData["Success"] != null)
+    {
+            <div class="alert alert-success">@TempData["Success"]</div>
+    }
+
+    @if (!Model.Any())
+    {
+            <p>No pending approvals.</p>
+    }
+    else
+    {
+                <table class="table table-striped" style="background-color: #9BABAB;">
+                <thead>
+                    <tr>
+                        <th scope="col">Request ID</th>
+                        <th scope="col">Customer Email</th>
+                        <th scope="col">Car Model</th>
+                        <th scope="col">Requested Start Date</th>
+                        <th scope="col">Requested End Date</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach (var b in Model)
+                {
+                            <tr>
+                                <td>@b.BookingId</td>
+                                <td>@b.CustomerEmail</td>
+                                <td>@b.CarModel</td>
+                                <td>@b.StartDate.ToString("yyyy-MM-dd")</td>
+                                <td>@b.EndDate.ToString("yyyy-MM-dd")</td>
+                                <td>
+                                    <form asp-action="ApproveBooking" method="post" style="display:inline"
+                                          onsubmit="return confirm('Approve booking #@b.BookingId?');">
+                                        <input type="hidden" name="id" value="@b.BookingId" />
+                                        <button type="submit" class="btn btn-success btn-sm">Approve</button>
+                                    </form>
+                                    <form asp-action="RejectBooking" method="post" style="display:inline; margin-left:5px;"
+                                          onsubmit="return confirm('Reject booking #@b.BookingId?');">
+                                        <input type="hidden" name="id" value="@b.BookingId" />
+                                        <button type="submit" class="btn btn-danger btn-sm">Reject</button>
+                                    </form>
+                                </td>
+                            </tr>
+                }
+                </tbody>
+            </table>
+    }
+
+    <a href="@Url.Action("Dashboard", "Admin")" class="btn btn-dark mt-4 mb-4">Back to Dashboard</a>
+</div>

@@ -1,0 +1,42 @@
+# Build results
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# NuGet
+*.nupkg
+packages/
+
+# Build artifacts
+*.dll
+*.exe
+*.pdb
+
+# User-specific files
+*.rsuser
+*.userprefs
+
+# Rider
+.idea/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# Zip files (keeping source code only)
+*.zip
+
+# Environment files with secrets
+.env
+.env.*
+*.env

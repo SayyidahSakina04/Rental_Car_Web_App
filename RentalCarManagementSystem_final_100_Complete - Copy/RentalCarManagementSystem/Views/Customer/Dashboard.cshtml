@@ -1,0 +1,100 @@
+﻿@{
+    ViewData["Title"] = "Customer Dashboard";
+    var currentBookings = ViewBag.CurrentBookings;
+    var bookingHistory = ViewBag.BookingHistory;
+}
+
+<style>
+    body { color: white; }
+    table { background-color: #9AB8AB; color: white; }
+    .btn { background-color: #11212D; color: white; }
+</style>
+
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center mt-4">
+        <h1>Welcome, Customer!</h1>
+        <a href="@Url.Action("Products", "Customer")" class="btn">Go to Products</a>
+    </div>
+    <p>Your rental applications, booking history, and more:</p>
+
+    <!-- rental applications -->
+    <div class="card mt-4">
+        <div class="card-header" style="background-color: #9BA8AB">
+            <h3>Your Rental Applications</h3>
+        </div>
+        <div class="card-body">
+            <table class="table">
+                <thead style="background-color: #4A5C6A">
+                    <tr>
+                        <th>Car Model</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Status</th>
+                        <th>Cancel</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var booking in currentBookings)
+                    {
+                        if (booking.Status == "Pending")
+                        {
+                            <tr>
+                                <td>@booking.CarModel</td>
+                                <td>@booking.StartDate.ToShortDateString()</td>
+                                <td>@booking.EndDate.ToShortDateString()</td>
+                                <td>@booking.Status</td>
+                                    <td>
+                                    <form asp-action="CancelBooking" method="post" style="display:inline;" 
+                                            onsubmit="return confirm('Are you sure you want to cancel this booking?');">
+                                        <input type="hidden" name="bookingId" value="@booking.BookingId" />
+                                        <button type="submit" class="btn btn-danger btn-sm">Cancel</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- booking history -->
+    <div class="card mt-4 mb-4">
+        <div class="card-header" style="background-color: #9BA8AB">
+            <h3>Your Booking History</h3>
+        </div>
+        <div class="card-body">
+            <table class="table">
+                <thead style="background-color: #4A5C6A">
+                    <tr>
+                        <th>Car Model</th>
+                        <th>Booking Date</th>
+                        <th>Duration (Days)</th>
+                        <th>Status</th>
+                        <th>Return</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var booking in bookingHistory)
+                    {
+                        <tr>
+                            <td>@booking.CarModel</td>
+                            <td>@booking.StartDate.ToShortDateString()</td>
+                            <td>@booking.Duration</td>
+                            <td>@booking.Status</td>
+                            <td>
+                            @if (booking.Status == "Approved")
+                            {
+                                        <form asp-action="ReturnCar" method="post" style="display:inline;">
+                                            <input type="hidden" name="bookingId" value="@booking.BookingId" />
+                                            <button type="submit" class="btn btn-primary btn-sm">Return Car</button>
+                                        </form>
+                            }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

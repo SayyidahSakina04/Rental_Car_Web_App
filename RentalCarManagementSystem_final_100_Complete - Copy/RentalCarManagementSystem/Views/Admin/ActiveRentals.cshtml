@@ -1,0 +1,62 @@
+﻿@model List<RentalCarManagementSystem.Models.ViewModels.ActiveRentalViewModel>
+
+@{
+    ViewData["Title"] = "Active Rentals";
+}
+
+<style>
+    body {
+        color: white;
+    }
+
+    .btn {
+        background-color: #11212D;
+    }
+
+    .badge-success {
+        background-color: #28a745;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 5px;
+    }
+</style>
+
+<div class="container mt-4">
+    <h1>Active Rentals</h1>
+
+    @if (!Model.Any())
+    {
+            <p>No active rentals found.</p>
+    }
+    else
+    {
+            <table class="table table-striped" style="background-color: #9BABAB">
+                <thead>
+                    <tr>
+                        <th scope="col">Rental ID</th>
+                        <th scope="col">Customer Email</th>
+                        <th scope="col">Car Model</th>
+                        <th scope="col">Rental Start Date</th>
+                        <th scope="col">Rental End Date</th>
+                        <th scope="col">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach (var rental in Model)
+                {
+                            <tr>
+                                <td>@rental.BookingId</td>
+                                <td>@rental.CustomerEmail</td>
+                                <td>@rental.CarModel</td>
+                                <td>@rental.StartDate.ToShortDateString()</td>
+                                <td>@rental.EndDate.ToShortDateString()</td>
+                                <td><span class="badge badge-success">Active</span></td>
+                            </tr>
+                }
+                </tbody>
+            </table>
+    }
+
+    <a href="@Url.Action("Dashboard", "Admin")" class="btn btn-dark mt-4 mb-4">Back to Dashboard</a>
+</div>
+
